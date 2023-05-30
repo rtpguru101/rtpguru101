@@ -36,8 +36,8 @@
          finalt2Value = (totalPoints2+100)/(gameNumberValue+1);
          }
          
-         document.getElementById("team1points").innerHTML = finalt1Value;
-         document.getElementById("team2points").innerHTML = finalt2Value;
+         document.getElementById("team1points").innerHTML = "Team 1 points after the game => " +finalt1Value;
+         document.getElementById("team2points").innerHTML = "Team 2 points after the game => " +finalt2Value;
          
          
          }
@@ -66,7 +66,7 @@
          Calculate
          </button>
          <div id="pointsDisplay">
-            <div id="team1points"></div>
+            <h3><div id="team1points"></div></h3>
             <div id="team2points"></div>
          </div>
       </div>
