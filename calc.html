@@ -1,76 +1,74 @@
-<html>
-  <head>
-	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
-	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/cerulean/bootstrap.min.css">
-    <script type="text/javascript">
-      function doThis(){
-
-let gameNumberValue = Number(document.getElementById("gameNumber").value);
-let t1Value = Number(document.getElementById("t1").value);
-let t2Value = Number(document.getElementById("t2").value);
-let winnerValue = Number(document.getElementById("winner").value);
-
-	console.log(t1Value +':'+t2Value +':'+gameNumberValue +':'+winnerValue);
-  
-  
-  let totalPoints1 = 0;
-  
-  let totalPoints2 = 0;
-  let finalt1Value = 0;
-  let finalt2Value = 0;
-  
-  if (winnerValue == 1){
-    totalPoints1 = (t1Value*gameNumberValue)+t2Value;
-    totalPoints2 = (t2Value*gameNumberValue)+t1Value;
-  	finalt1Value = (totalPoints1+100)/(gameNumberValue+1);
-    finalt2Value = (totalPoints2-100)/(gameNumberValue+1);
-  } else {
-   totalPoints1 = (t1Value*gameNumberValue)+t2Value;
-    totalPoints2 = (t2Value*gameNumberValue)+t1Value;
-  	finalt1Value = (totalPoints1-100)/(gameNumberValue+1);
-    finalt2Value = (totalPoints2+100)/(gameNumberValue+1);
-  }
-  
-  document.getElementById("team1points").innerHTML = finalt1Value;
-  document.getElementById("team2points").innerHTML = finalt2Value;
-  
-  
-}
-    </script>
-  </head>
-  <body>
-  
-  <div>
-Enter the Team 1 Points Before the Game start <input id="t1" style="width:100px">
-</div>
-<div>
-Enter the Team 2 Points Before the Game start <input id="t2" style="width:100px">
-
-</div>
-<div>
-
-Game Number<input id="gameNumber">
-</div>
-<div>
-<label for="cars">Choose the Winning Team:</label>
-
-<select name="winner" id="winner">
-  <option value="1">Team 1</option>
-  <option value="2">Team 2</option>
-  
-</select>
-
-</div>
-
-<div>
-<button id="calculate" onclick="doThis();">
-Calculate
-</button>
-
-<div id="pointsDisplay">
-<div id="team1points"></div>
-<div id="team2points"></div>
-</div>
-</div>
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>MLC Rating Points</title>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/cerulean/bootstrap.min.css">
+      <script type="text/javascript">
+         function doThis(){
+         
+         let gameNumberValue = Number(document.getElementById("gameNumber").value);
+         let t1Value = Number(document.getElementById("t1").value);
+         let t2Value = Number(document.getElementById("t2").value);
+         let winnerValue = Number(document.getElementById("winner").value);
+         
+         console.log(t1Value +':'+t2Value +':'+gameNumberValue +':'+winnerValue);
+         
+         
+         let totalPoints1 = 0;
+         
+         let totalPoints2 = 0;
+         let finalt1Value = 0;
+         let finalt2Value = 0;
+         
+         if (winnerValue == 1){
+         totalPoints1 = (t1Value*gameNumberValue)+t2Value;
+         totalPoints2 = (t2Value*gameNumberValue)+t1Value;
+         finalt1Value = (totalPoints1+100)/(gameNumberValue+1);
+         finalt2Value = (totalPoints2-100)/(gameNumberValue+1);
+         } else {
+         totalPoints1 = (t1Value*gameNumberValue)+t2Value;
+         totalPoints2 = (t2Value*gameNumberValue)+t1Value;
+         finalt1Value = (totalPoints1-100)/(gameNumberValue+1);
+         finalt2Value = (totalPoints2+100)/(gameNumberValue+1);
+         }
+         
+         document.getElementById("team1points").innerHTML = finalt1Value;
+         document.getElementById("team2points").innerHTML = finalt2Value;
+         
+         
+         }
+      </script>
+   </head>
+   <body>
+      <h1>MLC Rating Points Calculator</h1>
+      <div>
+         Enter the Team 1 Points Before the Game start <input id="t1" style="width:100px">
+      </div>
+      <div>
+         Enter the Team 2 Points Before the Game start <input id="t2" style="width:100px">
+      </div>
+      <div>
+         Game Number<input id="gameNumber">
+      </div>
+      <div>
+         <label for="cars">Choose the Winning Team:</label>
+         <select name="winner" id="winner">
+            <option value="1">Team 1</option>
+            <option value="2">Team 2</option>
+         </select>
+      </div>
+      <div>
+         <button id="calculate" onclick="doThis();">
+         Calculate
+         </button>
+         <div id="pointsDisplay">
+            <div id="team1points"></div>
+            <div id="team2points"></div>
+         </div>
+      </div>
+   </body>
 </html>
