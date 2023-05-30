@@ -19,49 +19,88 @@
          
          
          let totalPoints1 = 0;
+         let exptn1Msg = "";
+         let exptn2Msg = "";
+         let exptnMsg = "(Resetting due to exception rule)";
          
          let totalPoints2 = 0;
          let finalt1Value = 0;
          let finalt2Value = 0;
+	   let exptn1 = 0;
+		let exptn2 = 0;
          
          if (winnerValue == 1){
          totalPoints1 = (t1Value*gameNumberValue)+t2Value;
          totalPoints2 = (t2Value*gameNumberValue)+t1Value;
          finalt1Value = (totalPoints1+100)/(gameNumberValue+1);
          finalt2Value = (totalPoints2-100)/(gameNumberValue+1);
+
+		// If team 1 is the winner, its final points cannot be less than their original points
+		if ( t1Value > finalt1Value ) {
+			finalt1Value = t1Value;
+                  exptn1 = 1;
+		}
+
+		if ( finalt2Value > t2Value ) {
+			finalt2Value = t2Value;
+                  exptn2 = 1;
+		}
+
+
          } else {
          totalPoints1 = (t1Value*gameNumberValue)+t2Value;
          totalPoints2 = (t2Value*gameNumberValue)+t1Value;
          finalt1Value = (totalPoints1-100)/(gameNumberValue+1);
          finalt2Value = (totalPoints2+100)/(gameNumberValue+1);
+
+
+// If team 2 is the winner, t1 final points cannot be more than their original points
+		if ( finalt1Value > t1Value ) {
+			finalt1Value = t1Value;
+                  exptn1 = 1;
+		}
+
+		if ( finalt2Value < t2Value ) {
+			finalt2Value = t2Value;
+                  exptn2 = 1;
+		}
+
          }
+
+		if(exptn1 ==1) {
+                 exptn1Msg = exptnMsg;
+		}
+		if(exptn2 ==1) {
+                 exptn2Msg = exptnMsg;
+		}
+
          
-         document.getElementById("team1points").innerHTML = "Team 1 points after the game => " +finalt1Value;
-         document.getElementById("team2points").innerHTML = "Team 2 points after the game => " +finalt2Value;
+         document.getElementById("team1points").innerHTML = "Team 1 points after the game => " +Math.round(finalt1Value)+ " "+exptn1Msg;
+         document.getElementById("team2points").innerHTML = "Team 2 points after the game => " +Math.round(finalt2Value)+ " "+exptn2Msg;
          
          
          }
       </script>
    </head>
-   <body>
+   <body style="padding:20px">
       <h1>MLC Rating Points Calculator</h1>
-      <div>
+      <div style="padding:5px">
          Enter the Team 1 Points Before the Game start <input id="t1" style="width:100px">
       </div>
-      <div>
+      <div style="padding:5px">
          Enter the Team 2 Points Before the Game start <input id="t2" style="width:100px">
       </div>
-      <div>
-         Game Number<input id="gameNumber" style="width:50px">
+      <div style="padding:5px">
+         Game Number: <input id="gameNumber" style="width:50px">
       </div>
-      <div>
+      <div style="padding:5px">
          <label for="cars">Choose the Winning Team:</label>
          <select name="winner" id="winner">
             <option value="1">Team 1</option>
             <option value="2">Team 2</option>
          </select>
       </div>
-      <div>
+      <div style="padding:5px">
          <button id="calculate" onclick="doThis();">
          Calculate
          </button>
